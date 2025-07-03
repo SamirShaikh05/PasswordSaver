@@ -37,13 +37,13 @@ function Content() {
 
   const showPassword = () => {
     passwordRef.current.type = "text"
-    if (ref.current.src.includes("/Hide.svg")) {
-      ref.current.src = "/Show.svg"
+    if (ref.current.src.includes(`${import.meta.env.BASE_URL}Hide.svg`)) {
+      ref.current.src = `${import.meta.env.BASE_URL}Show.svg`
       passwordRef.current.type = "password"
     }
     else {
       passwordRef.current.type = "text"
-      ref.current.src = "/Hide.svg"
+      ref.current.src = `${import.meta.env.BASE_URL}Hide.svg`
     }
 
   }
@@ -154,14 +154,14 @@ function Content() {
               placeholder="Enter Password"
               className="bg-white border border-gray-300 rounded-full w-full py-1 pl-4 pr-10 shadow-sm focus:outline-none focus:ring-1 focus:ring-red-400 transition" ref={passwordRef} value={form.password} onChange={handleChange}
             />
-            <span className="absolute right-3 top-1 cursor-pointer" onClick={showPassword}><img ref={ref} src="/Show.svg" /></span>
+            <span className="absolute right-3 top-1 cursor-pointer" onClick={showPassword}><img ref={ref} src={`${import.meta.env.BASE_URL}Show.svg`} /></span>
           </div>
         </div>
-        
+
         <button
           onClick={savePassword} className="flex items-center gap-2 bg-gradient-to-r from-indigo-600 to-cyan-500 hover:from-indigo-700 hover:to-cyan-600 px-6 py-2 rounded-full text-white font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 hover:cursor-pointer"
         >
-          <img src="/Save.svg" alt="Save" className="w-5 h-5 invert" />Save
+          <img src={`${import.meta.env.BASE_URL}Save.svg`} alt="Save" className="w-5 h-5 invert" />Save
         </button>
       </div>
       <div className="container mt-5 mx-auto w-[85%] sm:w-[80%] md:w-[75%] min-h-[36vh] sm:min-h-[40vh] bg-white p-6 rounded-2xl shadow-md mb-[10px]">
@@ -182,24 +182,30 @@ function Content() {
                 {
                   passwordArray.map((item, index) => (
                     <tr key={index} className="hover:bg-yellow-50 transition">
-                      <td className="py-3 px-2 sm:px-5 text-xs sm:text-sm break-all">
-                        <div className="flex items-center gap-2">
+                      <td className="py-3 px-2 sm:px-5 text-xs sm:text-sm">
+                        <div className="flex items-center gap-2 overflow-x-auto max-w-[120px] whitespace-nowrap scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent">
                           <a href={item.site} target="_blank">{item.site}</a>
-                          <span className="hover:cursor-pointer" onClick={() => { copyText(item.site) }}><FaCopy /></span>
+                          <span className="hover:cursor-pointer shrink-0" onClick={() => { copyText(item.site) }}>
+                            <FaCopy />
+                          </span>
                         </div>
                       </td>
-                      <td className="py-3 px-2 sm:px-5 text-xs sm:text-sm break-all">
-                        <div className="flex items-center gap-2">
-                          {item.username}
-                          <span className="hover:cursor-pointer" onClick={() => { copyText(item.username) }}><FaCopy /></span>
+                      <td className="py-3 px-2 sm:px-5 text-xs sm:text-sm">
+                        <div className="flex items-center gap-2 overflow-x-auto max-w-[120px] whitespace-nowrap scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent">
+                          <span>{item.username}</span>
+                          <span className="hover:cursor-pointer shrink-0" onClick={() => { copyText(item.username) }}>
+                            <FaCopy />
+                          </span>
                         </div>
                       </td>
-                      <td className="py-3 px-2 sm:px-5 text-xs sm:text-sm break-all">
-                        <div className="flex items-center gap-2">
-                          {"*".repeat(item.password.length)}
-                          <span className="hover:cursor-pointer" onClick={() => { copyText(item.password) }}><FaCopy /></span>
-                        </div>
-                      </td>
+<td className="py-3 px-2 sm:px-5 text-xs sm:text-sm">
+  <div className="flex items-center gap-2 overflow-x-auto max-w-[100px] whitespace-nowrap scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent">
+    <span>{"*".repeat(item.password.length)}</span>
+    <span className="hover:cursor-pointer shrink-0" onClick={() => { copyText(item.password) }}>
+      <FaCopy />
+    </span>
+  </div>
+</td>
                       <td className="py-3 px-2 sm:px-5">
                         <div className="flex gap-1 sm:gap-3 items-center h-full">
                           <button className="bg-yellow-400 text-black p-1 sm:px-3 sm:py-1 rounded-full text-xs font-semibold hover:bg-yellow-300 transition hover:cursor-pointer" onClick={() => { editPassword(item.id) }} >

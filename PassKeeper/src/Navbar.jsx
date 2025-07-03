@@ -15,7 +15,7 @@ function Navbar() {
     className="flex items-center gap-3 text-white hover:text-cyan-400 transition-colors duration-300 group"
   >
     <img
-      src="/Github.png"
+      src={`${import.meta.env.BASE_URL}Github.png`}
       className="invert size-6 sm:size-7 group-hover:scale-110 transition-transform duration-300"
       alt="GitHub"
     />
