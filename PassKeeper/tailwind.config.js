@@ -9,6 +9,6 @@ export default {
   },
   plugins: [],
   corePlugins: {
-    scrollbar: true, // ✅ Enables scrollbar utilities (scrollbar-thin, etc.)
+    scrollbar: true,
   },
 }
