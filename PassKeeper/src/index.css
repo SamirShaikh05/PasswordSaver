@@ -2,8 +2,8 @@
 
 @layer utilities {
   .scrollbar-thin::-webkit-scrollbar {
-    height: 4px;
-    width: 4px;
+    height: 3px;
+    width: 3px;
   }
 
   .scrollbar-thin::-webkit-scrollbar-thumb {
